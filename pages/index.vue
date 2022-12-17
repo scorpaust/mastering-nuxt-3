@@ -5,5 +5,7 @@
 </template>
 
 <script setup lang="ts">
-const firstLesson = useFirstLesson();
+import { OutlineLesson } from "~~/types/course";
+
+const firstLesson: OutlineLesson = await useFirstLesson();
 </script>

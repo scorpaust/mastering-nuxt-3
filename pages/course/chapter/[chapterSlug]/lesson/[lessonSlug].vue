@@ -27,16 +27,23 @@
   </div>
 </template>
 
-<script setup>
-const course = useCourse();
+<script setup lang="ts">
+import { RemovableRef } from "@vueuse/shared";
+import { CourseMeta, LessonWithPath } from "~~/types/course";
+
+const course: RemovableRef<CourseMeta> = await useCourse();
 const route = useRoute();
+
+const { chapterSlug, lessonSlug } = route.params;
+
+const lesson: RemovableRef<LessonWithPath> = await useLesson(chapterSlug as string, lessonSlug as string);
 
 definePageMeta({
   middleware: [
-    function ({ params }, from) {
-      const course = useCourse();
+    async function ({ params }, from) {
+      const course = await useCourse();
 
-      const chapter = course.chapters.find(
+      const chapter = course.value.chapters.find(
         (chapter) => chapter.slug === params.chapterSlug
       );
 
@@ -67,19 +74,13 @@ definePageMeta({
 });
 
 const chapter = computed(() => {
-  return course.chapters.find(
+  return course.value.chapters.find(
     (chapter) => chapter.slug === route.params.chapterSlug
   );
 });
 
-const lesson = computed(() => {
-  return chapter.value.lessons.find(
-    (lesson) => lesson.slug === route.params.lessonSlug
-  );
-});
-
 const title = computed(() => {
-  return `${lesson.value.title} - ${course.title}`;
+  return `${lesson.value.title} - ${course.value.title}`;
 });
 
 useHead({
