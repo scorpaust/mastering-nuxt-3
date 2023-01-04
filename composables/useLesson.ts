@@ -5,5 +5,5 @@ export default async (
   lessonSlug: string
 ) =>
   useFetchWithCache<LessonWithPath>(
-    `/api/course/chapter/${chapterSlug}/lesson/${lessonSlug}`
+    `/course/chapter/${chapterSlug}/lesson/${lessonSlug}`
   );
