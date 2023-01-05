@@ -37,6 +37,8 @@ const course = await useCourse();
 const route = useRoute();
 const { chapterSlug, lessonSlug } = route.params;
 const lesson = await useLesson(chapterSlug, lessonSlug);
+console.log("lesson: ", lesson)
+
 definePageMeta({
   middleware: [
     async function ({ params }, from) {
@@ -55,6 +57,7 @@ definePageMeta({
       const lesson = chapter.lessons.find(
         (lesson) => lesson.slug === params.lessonSlug
       );
+
       if (!lesson) {
         return abortNavigation(
           createError({

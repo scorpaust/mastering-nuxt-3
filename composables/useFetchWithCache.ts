@@ -23,5 +23,7 @@ export default async <T>(url: string) => {
     console.log(`Getting value from cache for ${url}`);
   }
 
+  console.log("cached: ", cached)
+
   return cached;
 };

@@ -10,9 +10,11 @@ export default defineEventHandler(async (event) => {
       slug: lessonSlug,
       Chapter: {
         slug: chapterSlug
-      }
+      },
     },
   });
+
+  console.log("prisma lesson:", lesson)
 
   if (!lesson) {
     throw createError({
@@ -24,5 +26,5 @@ export default defineEventHandler(async (event) => {
   return {
     ...lesson,
     path: `/course/chapter/${chapterSlug}/lesson/${lessonSlug}`
-  }
-})
+  };
+});

@@ -1,4 +1,4 @@
-import { Lesson } from '@prisma/client';
+import { Lesson } from "@prisma/client";
 
 export type LessonWithPath = Lesson & {
   path: string;
@@ -16,7 +16,8 @@ export type Course = {
   chapters: Chapter[];
 };
 
-type OutlineBase = {
+
+export type OutlineBase = {
   title: string;
   slug: string;
   number: number;
