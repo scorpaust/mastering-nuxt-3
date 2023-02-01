@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="flex flex-col">
     <p class="mt-0 uppercase font-bold text-slate-400 mb-1">
       Lesson {{ chapter.number }} - {{ lesson.number }}
     </p>
     <h2 class="my-0">{{ lesson.title }}</h2>
-    <div class="flex space-x-4 mt-2 mb-8">
+    <div class="w-full flex space-x-4 mt-2 mb-8">
       <NuxtLink
         v-if="lesson.sourceUrl"
         class="font-normal text-md text-gray-500"
@@ -22,6 +22,7 @@
     </div>
     <VideoPlayer
       v-if="lesson.videoId"
+      class="pr-20"
       :videoId="lesson.videoId"
     />
     <p>{{ lesson.text }}</p>
