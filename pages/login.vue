@@ -11,13 +11,10 @@
 </template>
 
 <script setup lang="ts">
-import { RemovableRef } from "@vueuse/shared";
-import { CourseMeta } from "~~/types/course";
-
-const course: RemovableRef<CourseMeta> = await useCourse();
+const course = await useCourse();
 const { query } = useRoute();
 const supabase = useSupabaseClient();
-
+const user = useSupabaseUser();
 watchEffect(async () => {
   if (user.value) {
     await navigateTo(query.redirectTo as string, {
@@ -25,14 +22,12 @@ watchEffect(async () => {
     });
   }
 });
-
 const login = async () => {
   const redirectTo = `${window.location.origin}${query.redirectTo}`;
   const { error } = await supabase.auth.signInWithOAuth({
-    provider: "github",
+    provider: 'github',
     options: { redirectTo },
   });
-
   if (error) {
     console.error(error);
   }

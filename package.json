@@ -4,6 +4,8 @@
     "seed": "node prisma/seed.mjs"
   },
   "scripts": {
+    "db:migrate": "npx prisma migrate dev --name user-entity --create-only && npx prisma generate",
+    "db:push": "npx prisma db push",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -12,10 +14,15 @@
   "devDependencies": {
     "@nuxtjs/supabase": "^0.3.0",
     "@nuxtjs/tailwindcss": "^5.3.2",
-    "@prisma/client": "^4.8.0",
+    "@pinia/nuxt": "^0.4.6",
+    "@prisma/client": "^4.9.0",
     "@tailwindcss/typography": "^0.5.4",
     "@vueuse/core": "^9.6.0",
     "@vueuse/nuxt": "^9.6.0",
-    "nuxt": "3.0.0-rc.12"
+    "nuxt": "3.0.0-rc.12",
+    "prisma": "^4.9.0"
+  },
+  "dependencies": {
+    "pinia": "^2.0.29"
   }
 }

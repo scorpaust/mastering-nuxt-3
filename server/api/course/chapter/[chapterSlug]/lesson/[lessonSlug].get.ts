@@ -1,8 +1,14 @@
 import { PrismaClient } from "@prisma/client";
+import protectRoute from "~~/server/utils/protectRoute";
 
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
+
+  if (event.context.params.chapterSlug !== '1-chapter-1') {
+    protectRoute(event);
+  }
+
   const { chapterSlug, lessonSlug } = event.context.params;
 
   const lesson = await prisma.lesson.findFirst({
@@ -13,8 +19,6 @@ export default defineEventHandler(async (event) => {
       },
     },
   });
-
-  console.log("prisma lesson:", lesson)
 
   if (!lesson) {
     throw createError({
