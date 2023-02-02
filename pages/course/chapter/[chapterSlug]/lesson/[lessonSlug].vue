@@ -17,7 +17,7 @@
         class="font-normal text-md text-gray-500"
         :to="lesson.downloadUrl"
       >
-        Download Video
+        Download this Video
       </NuxtLink>
     </div>
     <VideoPlayer
