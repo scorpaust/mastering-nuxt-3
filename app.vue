@@ -5,3 +5,6 @@
     </NuxtLayout>
   </div>
 </template>
+<script setup>
+import fetch from "node-fetch"
+</script>
