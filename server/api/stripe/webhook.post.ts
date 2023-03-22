@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import stripe from './stripe';
+import Stripe from './stripe';
 
 type PaymentIntent = {
   id: string;
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   // Verify the webhook signature
   let stripeEvent;
   try {
-    stripeEvent = await stripe.webhooks.constructEvent(
+    stripeEvent = await Stripe.webhooks.constructEvent(
       body,
       signature,
       STRIPE_WEBHOOK_SECRET

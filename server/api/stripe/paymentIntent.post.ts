@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import stripe from './stripe';
+import Stripe from './stripe';
 
 const prisma = new PrismaClient();
 
@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   // We only have one course for now, so we have the price hard-coded
   let paymentIntent;
   try {
-    paymentIntent = await stripe.paymentIntents.create({
+    paymentIntent = await Stripe.paymentIntents.create({
       amount: 97 * 100,
       currency: 'eur',
       metadata: {
