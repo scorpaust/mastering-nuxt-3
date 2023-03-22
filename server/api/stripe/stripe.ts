@@ -1,5 +1,5 @@
 import stripe from 'stripe';
 const config = useRuntimeConfig();
-const Stripe = stripe(config.stripeSecret);
+const Stripe = new stripe(config.stripeSecret);
 
 export default Stripe;
